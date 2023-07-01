@@ -19,6 +19,8 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
 def main():
     while True:
         user_input = input(">>>")
+        if user_input == 'hello':
+            print('Hello')
         command, data = parser(user_input)
         result = command(*data)
         print(result)
