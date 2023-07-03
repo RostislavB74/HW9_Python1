@@ -8,24 +8,23 @@ def no_command(*args):
     return "Unknown command"
 
 
-def get_input(text: str):
-    text_lower= text.lower()
+def get_input(text: str) -> tuple[callable, tuple[str] | None]:
+    text_lower = text.lower()
     if text_lower.startswith("hello"):
-        return print("How can I help you?")
+        return "How can I help you?"
     if text_lower.startswith("close") or text_lower.startswith("exit") or text_lower.startswith("good bye"):
         return "Good bye!"
     if text_lower.startswith("add"):
-        print(type(add), type(text.replace("add", "").strip().split()))
+        # new_contact = []
+        # contact_book = (text.replace("add", "").strip().split())
+        # print(add, text.replace("add", "").strip().split())
+        # print(contact_book)
         return add, text.replace("add", "").strip().split()
-
-#def parser(text: str): #-> tuple[callable, tuple[str] | None]:
- #   if text.startswith("add"):
-  #      print (text)
-   #     return add, text.replace("add", "").strip().split()
-    
-    # if text.startswith("hello"):
-    #     print("How can I help you?")
-    #     return
+        # print(type(contact_book))
+        # return contact_book
+    # if text_lower.startswith("show all"):
+     #   contact_book:
+      #      print(contact_book)
     return no_command, None
 
 
@@ -33,7 +32,7 @@ def main():
     while True:
         user_input = input(">>>")
         command = get_input(user_input)
-        #print (command)
+        # print (command)
         # command, data = parser(user_input)
         if command == "Good bye!":
             print(command)
