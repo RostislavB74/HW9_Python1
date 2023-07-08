@@ -2,7 +2,6 @@ address_book = {}
 
 
 def add(*args):
-
     name = args[0]
     phone = args[1]
     address_book[name] = phone
@@ -18,26 +17,32 @@ def change(*args):
     return f"Change success {name} {phone}"
 
 
-def show_all(*args):
-    return [f"Phone: {key}  User: {value}" for key, value in address_book.items()]
+def exit(*args):
+    return "Good bye!"
 
 
 def get_phone(*args):
     name = args[0]
     return f"User:{name}  Phone: {address_book[name]}"
-    # list ( map(lambda i: i.get('email'), users) )
-
-
-def no_command(*args):
-    return "Unknown command"
 
 
 def hello(*args):
     return "How can I help you?"
 
 
-def exit(*args):
-    return "Good bye!"
+def main():
+    while True:
+        user_input = input(">>>")
+        command, data = parser(user_input)
+        result = command(*data)
+        if result == "Good bye!":
+            print(result)
+            break
+        print(result)
+
+
+def no_command(*args):
+    return "Unknown command"
 
 
 def parser(text: str) -> tuple[callable, tuple[str] | None]:
@@ -57,22 +62,9 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
     return no_command, None
 
 
-def main():
-    while True:
-        user_input = input(">>>")
-        command, data = parser(user_input)
-        result = command(*data)
-        if result == "Good bye!":
-            print(result)
-            break
-
-        print(result)
+def show_all(*args):
+    return [f"Phone: {key}  User: {value}" for key, value in address_book.items()]
 
 
 if __name__ == "__main__":
     main()
-# def add(*args):
-#     name = Name(args[0])
-#     phone = Phone(args[1])
-#     rec = Record(name, phone)
-#     return addressbook.add_rec(rec)
