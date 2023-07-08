@@ -32,7 +32,7 @@ def main():
     while True:
         user_input = input(">>>")
         command = get_input(user_input)
-        # print (command)
+        print(command)
         # command, data = parser(user_input)
         if command == "Good bye!":
             print(command)
