@@ -1,16 +1,23 @@
+address_book = {}
+
+
 def add(*args):
-    contact = {}
+
     name = args[0]
     phone = args[1]
-    contact[phone] = name
+    address_book[phone] = name
+    # print(contact)
     return f"Add success {name} {phone}"
 
 
-def address_book(contact):
-    contact = {}
-    address_book = []
-    address_book.append(contact)
-    return address_book
+def show_all(*args):
+    return [f"Phone: {key}  User: {value}" for key, value in address_book.items()]
+
+
+def get_phone(*args):
+    phone = args[0]
+    return f"Phone: {phone}  User: {address_book[phone]}"
+    # list ( map(lambda i: i.get('email'), users) )
 
 
 def no_command(*args):
@@ -34,7 +41,9 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
     if text.startswith("close") or text.startswith("exit") or text.startswith("good bye"):
         return exit, "Good bye!"
     if text.startswith("show all"):
-        return address_book
+        return show_all, 'show all'
+    if text.startswith("phone"):
+        return get_phone, text.replace("phone", "").strip().split()
     return no_command, None
 
 
