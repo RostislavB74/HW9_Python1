@@ -1,16 +1,15 @@
 def add(*args):
-    address_book = []
     contact = {}
     name = args[0]
     phone = args[1]
-    contact[name] = phone
-    address_book.append(contact)
-
-    print(address_book)
+    contact[phone] = name
     return f"Add success {name} {phone}"
 
 
-def show_all():
+def address_book(contact):
+    contact = {}
+    address_book = []
+    address_book.append(contact)
     return address_book
 
 
@@ -35,7 +34,7 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
     if text.startswith("close") or text.startswith("exit") or text.startswith("good bye"):
         return exit, "Good bye!"
     if text.startswith("show all"):
-        return show_all
+        return address_book
     return no_command, None
 
 
@@ -53,3 +52,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+# def add(*args):
+#     name = Name(args[0])
+#     phone = Phone(args[1])
+#     rec = Record(name, phone)
+#     return addressbook.add_rec(rec)
