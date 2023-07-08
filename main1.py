@@ -5,9 +5,17 @@ def add(*args):
 
     name = args[0]
     phone = args[1]
-    address_book[phone] = name
+    address_book[name] = phone
     # print(contact)
     return f"Add success {name} {phone}"
+
+
+def change(*args):
+    name = args[0]
+    phone = args[1]
+    address_book[name] = phone
+    # print(contact)
+    return f"Change success {name} {phone}"
 
 
 def show_all(*args):
@@ -15,8 +23,8 @@ def show_all(*args):
 
 
 def get_phone(*args):
-    phone = args[0]
-    return f"Phone: {phone}  User: {address_book[phone]}"
+    name = args[0]
+    return f"User:{name}  Phone: {address_book[name]}"
     # list ( map(lambda i: i.get('email'), users) )
 
 
@@ -44,6 +52,8 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
         return show_all, 'show all'
     if text.startswith("phone"):
         return get_phone, text.replace("phone", "").strip().split()
+    if text.startswith("change"):
+        return get_phone, text.replace("change", "").strip().split()
     return no_command, None
 
 
