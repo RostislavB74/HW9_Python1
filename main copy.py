@@ -3,24 +3,14 @@ address_book = {}
 
 def input_error(func):
     def wrapper(*args, **kwargs):
-        # count = 10
-
-        # while count:
         try:
             return func(*args, **kwargs)
         except IndexError:
-            #        count -= 1
             print("Give me name and phone please")
-        #        print(f"{count} tries left")
         except TypeError:
-            #        count -= 1
             print("Give me name and phone please")
-        #        print(f"{count} tries left")
         except ValueError:
-            #        count -= 1
             print("Give me name and phone please")
-        #        print(f"{count} tries left")
-
     return wrapper
 
 
@@ -57,7 +47,6 @@ def hello(*args):
 # @input_error
 def main():
     while True:
-        # try:
         user_input = input(">>>")
         if user_input:
             command, data = parser(user_input)
@@ -70,8 +59,6 @@ def main():
             continue
         else:
             print(no_command())
-            # except:
-        #     continue
 
 
 def no_command(*args, **kwargs):
@@ -98,9 +85,6 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
             return no_command, ''
     else:
         return no_command, ''
-
-# def show_all(*args):
-#     return [f"User: {key}  Phone: {value}" for key, value in address_book.items()]
 
 
 def show_all(*args):
