@@ -1,21 +1,5 @@
-import functools
-
 address_book = {}
 
-
-# def input_error(func):
-#     #     #        @functools.wraps(func)
-#     def inner(*args, **kwargs):
-
-#         try:
-#             func(*args, **kwargs)
-#         except IndexError:
-#             print("Please input : \" add name phone\"")
-#             return func(*args, **kwargs)
-#         except TypeError:
-#             print("Give me name and phone please")
-#             return func(*args, **kwargs)
-#     return inner
 
 def input_error(func):
     def wrapper(*args, **kwargs):
@@ -40,55 +24,27 @@ def input_error(func):
     return wrapper
 
 
-# def input_error(func):
-#     # @functools.wraps(func)
-#     def inner(*args, **kwargs):
-
-#         try:
-#             func(*args, **kwargs)
-#         except:
-
-
-#     return inner
-# @input_error
-# @retry(max_tries=10)
-
-
 def add(*args):
     name = args[0]
     phone = args[1]
     address_book[name] = phone
-    # print(contact)
     return f"Add success {name} {phone}"
-
-# @input_error
-# @retry(max_tries=10)
 
 
 def change(*args):
     name = args[0]
     phone = args[1]
     address_book[name] = phone
-    # print(contact)
     return f"Change success {name} {phone}"
-
-# @input_error
-# @retry(max_tries=10)
 
 
 def exit(*args):
     return "Good bye!"
 
-# @input_error
-# @retry(max_tries=10)
-
 
 def get_phone(*args):
     name = args[0]
     return f"User:{name}  Phone: {address_book[name]}"
-
-# @input_error
-# @retry(max_tries=10)
 
 
 def hello(*args):
@@ -112,15 +68,11 @@ def main():
             # except:
         #     continue
 
-# @input_error
-# @retry(max_tries=10)
-
 
 def no_command(*args, **kwargs):
     return "Unknown command"
 
 
-# @input_error
 def parser(text: str) -> tuple[callable, tuple[str] | None]:
 
     if text:
@@ -142,7 +94,7 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
 
 
 def show_all(*args):
-    return [f"Phone: {key}  User: {value}" for key, value in address_book.items()]
+    return [f"User: {key}  Phone: {value}" for key, value in address_book.items()]
 
 
 if __name__ == "__main__":
