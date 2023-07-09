@@ -67,6 +67,17 @@ def main():
             print(no_command())
             # except:
         #     continue
+# def main():
+    while True:
+        # try:
+        user_input = input(">>>")
+        if user_input:
+            command, data = parser(user_input)
+            result = command(*data)
+            if result:
+                if result == "Good bye!":
+                    print(result)
+                    break
 
 
 def no_command(*args, **kwargs):
@@ -89,12 +100,23 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
             return get_phone, text.replace("phone", "").strip().split()
         if text.startswith("change"):
             return change, text.replace("change", "").strip().split()
+        else:
+            return no_command, ''
     else:
-        return no_command, None
+        return no_command, ''
 
 
+# def show_all(*args):
+#     return [f"User: {key}  Phone: {value}" for key, value in address_book.items()]
 def show_all(*args):
-    return [f"User: {key}  Phone: {value}" for key, value in address_book.items()]
+    # res = []
+    res = [print(f"Name contact: {key}  Phone number: {value}", end="\n") for key,
+           value in address_book.items()]
+    # for key,  value in address_book.items():
+
+    # res.append(f"Name: {key}  Phone: number {value}")
+    # print(res)
+    return res
 
 
 if __name__ == "__main__":

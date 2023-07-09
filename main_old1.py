@@ -1,10 +1,10 @@
-# import pprint
 address_book = {}
 
 
 def input_error(func):
     def wrapper(*args, **kwargs):
         count = 10
+
         while count:
             try:
                 return func(*args, **kwargs)
@@ -20,10 +20,10 @@ def input_error(func):
                 count -= 1
                 print("Please input : \" add name phone\"")
                 print(f"{count} tries left")
-        return wrapper
+
+    return wrapper
 
 
-@ input_error
 def add(*args):
     name = args[0]
     phone = args[1]
@@ -31,7 +31,6 @@ def add(*args):
     return f"Add success {name} {phone}"
 
 
-@ input_error
 def change(*args):
     name = args[0]
     phone = args[1]
@@ -52,7 +51,7 @@ def hello(*args):
     return "How can I help you?"
 
 
-# @ input_error
+@input_error
 def main():
     while True:
         # try:
@@ -60,22 +59,20 @@ def main():
         if user_input:
             command, data = parser(user_input)
             result = command(*data)
-            if result:
-                if result == "Good bye!":
-                    print(result)
-                    break
+            if result == "Good bye!":
+                print(result)
+                break
             print(result)
-            # print("Unknown command\n Give me name and phone please")
-        # except:
+        else:
+            print(no_command())
+            # except:
         #     continue
 
 
-def no_command(*args):
-    # print("Give me name and phone please")
-    return "Unknown command\n Give me name and phone please"
+def no_command(*args, **kwargs):
+    return "Unknown command"
 
 
-@input_error
 def parser(text: str) -> tuple[callable, tuple[str] | None]:
 
     if text:
@@ -100,17 +97,7 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
 
 
 def show_all(*args):
-    # res = []
-    res = [print(f"Name contact: {key}  Phone number: {value}", end="\n") for key,
-           value in address_book.items()]
-    # for key,  value in address_book.items():
-
-    # res.append(f"Name: {key}  Phone: number {value}")
-    print(res)
-    return
-    # return ["{0}: {1}".format(key, value) for key, value in address_book.items()]
-    # return [f"User: {key}  Phone: {value}" for key, value in address_book.items()]
-    # list_data.append(k + ':' + str(v))
+    return [f"User: {key}  Phone: {value}" for key, value in address_book.items()]
 
 
 if __name__ == "__main__":
