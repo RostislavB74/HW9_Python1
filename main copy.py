@@ -3,27 +3,28 @@ address_book = {}
 
 def input_error(func):
     def wrapper(*args, **kwargs):
-        count = 10
+        # count = 10
 
-        while count:
-            try:
-                return func(*args, **kwargs)
-            except IndexError:
-                count -= 1
-                print("Please input : \" add name phone\"")
-                print(f"{count} tries left")
-            except TypeError:
-                count -= 1
-                print("Give me name and phone please")
-                print(f"{count} tries left")
-            except ValueError:
-                count -= 1
-                print("Please input : \" add name phone\"")
-                print(f"{count} tries left")
+        # while count:
+        try:
+            return func(*args, **kwargs)
+        except IndexError:
+            #        count -= 1
+            print("Give me name and phone please")
+        #        print(f"{count} tries left")
+        except TypeError:
+            #        count -= 1
+            print("Give me name and phone please")
+        #        print(f"{count} tries left")
+        except ValueError:
+            #        count -= 1
+            print("Give me name and phone please")
+        #        print(f"{count} tries left")
 
     return wrapper
 
 
+@input_error
 def add(*args):
     name = str.capitalize(args[0])
     phone = args[1]
@@ -31,6 +32,7 @@ def add(*args):
     return f"Add success {name} {phone}"
 
 
+@input_error
 def change(*args):
     name = str.capitalize(args[0])
     phone = args[1]
@@ -42,6 +44,7 @@ def exit(*args):
     return "Good bye!"
 
 
+@input_error
 def get_phone(*args):
     name = str.capitalize(args[0])
     return f"User:{name}  Phone: {address_book[name]}"
@@ -51,7 +54,7 @@ def hello(*args):
     return "How can I help you?"
 
 
-@input_error
+# @input_error
 def main():
     while True:
         # try:
