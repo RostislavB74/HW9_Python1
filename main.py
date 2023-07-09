@@ -25,17 +25,17 @@ def input_error(func):
 
 
 def add(*args):
-    name = args[0]
+    name = str.capitalize(args[0])
     phone = args[1]
-    address_book[name] = phone
+    address_book[str.capitalize(name)] = phone
     return f"Add success {name} {phone}"
 
 
 def change(*args):
-    name = args[0]
+    name = str.capitalize(args[0])
     phone = args[1]
-    address_book[name] = phone
-    return f"Change success {name} {phone}"
+    address_book[str.capitalize(name)] = phone
+    return f"Change success {str.capitalize(name)} {phone}"
 
 
 def exit(*args):
@@ -43,7 +43,7 @@ def exit(*args):
 
 
 def get_phone(*args):
-    name = args[0]
+    name = str.capitalize(args[0])
     return f"User:{name}  Phone: {address_book[name]}"
 
 
@@ -80,7 +80,7 @@ def parser(text: str) -> tuple[callable, tuple[str] | None]:
     if text:
         text1 = text.lower()
         if text1.startswith("add"):
-            return add, text.replace("add", "").strip().split()
+            return add, text1.replace("add", "").strip().split()
         if text1.startswith("hello"):
             return hello, "How can I help you?"
         if text1.startswith("close") or text1.startswith("exit") or text1.startswith("good bye"):
