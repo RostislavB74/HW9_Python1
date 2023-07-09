@@ -78,18 +78,18 @@ def no_command(*args, **kwargs):
 def parser(text: str) -> tuple[callable, tuple[str] | None]:
 
     if text:
-        text = text.lower()
-        if text.startswith("add"):
+        text1 = text.lower()
+        if text1.startswith("add"):
             return add, text.replace("add", "").strip().split()
-        if text.startswith("hello"):
+        if text1.startswith("hello"):
             return hello, "How can I help you?"
-        if text.startswith("close") or text.startswith("exit") or text.startswith("good bye"):
+        if text1.startswith("close") or text1.startswith("exit") or text1.startswith("good bye"):
             return exit, "Good bye!"
-        if text.startswith("show all"):
+        if text1.startswith("show all"):
             return show_all, 'show all'
-        if text.startswith("phone"):
+        if text1.startswith("phone"):
             return get_phone, text.replace("phone", "").strip().split()
-        if text.startswith("change"):
+        if text1.startswith("change"):
             return change, text.replace("change", "").strip().split()
         else:
             return no_command, ''
