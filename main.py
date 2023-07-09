@@ -21,7 +21,7 @@ def input_error(func):
                 count -= 1
                 print("Please input : \" add name phone\"")
                 print(f"{count} tries left")
-            return wrapper
+        return wrapper
 
 
 @input_error
